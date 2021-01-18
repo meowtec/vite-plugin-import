@@ -1,4 +1,4 @@
-import { Transform } from 'vite';
+import { Plugin } from 'vite';
 import { transformAsync } from '@babel/core';
 
 export type ImportPluginOptions = Array<{
@@ -12,34 +12,22 @@ export default (options: ImportPluginOptions) => {
   /**
    * fast check and pass by code that does not contains libraryName
    */
-  const codeIncludesLibraryName = (code: string) => {
-    return !options.every(({ libraryName }) => {
-      return !new RegExp(`('${libraryName}')|("${libraryName}")`).test(code);
-    });
-  }
+  const codeIncludesLibraryName = (code: string) => !options.every(({ libraryName }) => !new RegExp(`('${libraryName}')|("${libraryName}")`).test(code));
 
-  const moduleImportTransform: Transform = {
-    test({ isBuild, code }: any) {
-      // NOTICE: code exists only when isBuild == true
-      return isBuild && code && codeIncludesLibraryName(code);
-    },
-
-    async transform({ code, path }) {
-      if (!codeIncludesLibraryName(code)) {
-        return code;
+  const plugin: Plugin = {
+    name: 'modular-import',
+    async transform(src) {
+      if (this && !codeIncludesLibraryName(src)) {
+        return undefined;
       }
 
-      const result = await transformAsync(code, {
-        plugins: options.map(mod => ['import', mod, `import-${mod.libraryDirectory}`]),
+      const result = await transformAsync(src, {
+        plugins: options.map((mod) => ['import', mod, `import-${mod.libraryDirectory}`]),
       });
 
-      return result?.code ?? code;
+      return result?.code;
     },
   };
 
-  return {
-    transforms: [
-      moduleImportTransform,
-    ],
-  };
+  return plugin;
 };
