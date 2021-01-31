@@ -36,6 +36,9 @@ require('antd/lib/button/style');
 ReactDOM.render(<_button>xxxx</_button>);
 ```
 
+## NOTICE
+Need to clarify that you DO NOT really need `vite-plugin-import` for antd, because antd is _tree shakeable_, and vite can remove the unused codes when build.
+
 ## How it works
 Internally, `vite-plugin-import` just use `babel` + `babel-plugin-import` for transforming codes.
 For performance, `vite-plugin-import` will only transform codes that contain the module names.
