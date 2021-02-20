@@ -1,6 +1,5 @@
 /* eslint-disable import/no-extraneous-dependencies */
 // @ts-check
-import reactPlugin from 'vite-plugin-react';
 import importPlugin from 'vite-plugin-import';
 
 /**
@@ -8,10 +7,13 @@ import importPlugin from 'vite-plugin-import';
  */
 const config = {
   plugins: [
-    reactPlugin,
-    // importPlugin([
-    //   { libraryName: 'antd-mobile', style: 'css' },
-    // ]),
+    importPlugin([
+      {
+        libraryName: 'antd-mobile',
+        libraryDirectory: 'es',
+        style: 'css',
+      },
+    ]),
   ],
 };
 
