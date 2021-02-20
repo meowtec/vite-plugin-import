@@ -9,9 +9,9 @@ import importPlugin from 'vite-plugin-import';
 const config = {
   plugins: [
     reactPlugin,
-    importPlugin([
-      { "libraryName": "antd", style: "css" },
-    ]),
+    // importPlugin([
+    //   { libraryName: 'antd-mobile', style: 'css' },
+    // ]),
   ],
 };
 
