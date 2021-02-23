@@ -14,17 +14,11 @@ export default (options: ImportPluginOptions) => {
    */
   const codeIncludesLibraryName = (code: string) => !options.every(({ libraryName }) => !new RegExp(`('${libraryName}')|("${libraryName}")`).test(code));
 
-  let isBuild = false;
-
   const plugin: Plugin = {
     name: 'modular-import',
 
-    configResolved(config) {
-      isBuild = config.command === 'build' || config.isProduction;
-    },
-
     async transform(src) {
-      if (!isBuild || !codeIncludesLibraryName(src)) {
+      if (!codeIncludesLibraryName(src)) {
         return undefined;
       }
 
