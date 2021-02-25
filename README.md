@@ -6,6 +6,14 @@ Modular import plugin for  [Vite](https://github.com/vitejs/vite)
 npm i vite-plugin-import -D
 ```
 
+## When to use?
+
+If the library that you are using tell you to use `babel-plugin-import` to reduce the bundle size, then you can use `@rollup/plugin-babel + babel-plugin-import`, or just `vite-plugin-import`.
+
+If you need some other babel features, use `@rollup/plugin-babel + babel-plugin-import`, not `vite-plugin-import`.
+
+`vite-plugin-import` is a little faster then `@rollup/plugin-babel + babel-plugin-import`.
+
 ## Usage
 vite.config.js:
 
