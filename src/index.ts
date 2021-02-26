@@ -20,7 +20,7 @@ export default (options: ImportPluginOptions) => {
     babelImportPluginOptions = options;
   } else {
     babelImportPluginOptions = options.babelImportPluginOptions;
-    onlyBuild = options.onlyBuild === false ? false : true;
+    onlyBuild = options.onlyBuild !== false;
   }
   
   /**
