@@ -30,6 +30,20 @@ const config = {
     ]),
   ],
 }
+
+// or
+
+const config = {
+  plugins: [
+    createImportPlugin({
+      onlyBuild: false, // if onlyBuild === true, this plugin takes effect only in vite build mode; onlyBuild's default value is true.
+      babelImportPluginOptions: [{
+        libraryName: 'antd',
+        'style': true,   // or 'css'
+      }]
+    }),
+  ],
+}
 ```
 
 app code:
