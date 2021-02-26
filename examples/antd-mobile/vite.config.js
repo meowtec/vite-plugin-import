@@ -7,13 +7,16 @@ import importPlugin from 'vite-plugin-import';
  */
 const config = {
   plugins: [
-    importPlugin([
-      {
-        libraryName: 'antd-mobile',
-        libraryDirectory: 'es',
-        style: 'css',
-      },
-    ]),
+    importPlugin({
+      onlyBuild: false,
+      babelImportPluginOptions: [
+        {
+          libraryName: 'antd-mobile',
+          libraryDirectory: 'es',
+          style: 'css',
+        },
+      ],
+    }),
   ],
 };
 
