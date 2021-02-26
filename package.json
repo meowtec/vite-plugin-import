@@ -1,6 +1,6 @@
 {
   "name": "vite-plugin-import",
-  "version": "0.3.1",
+  "version": "0.3.0",
   "description": "Component modular import plugin for vite.",
   "main": "lib/index.js",
   "files": [
@@ -11,7 +11,7 @@
   ],
   "scripts": {
     "lint": "eslint src",
-    "build": "tsc && npx tsc -m es2015 --outDir es",
+    "build": "rm -rf es lib && tsc && npx tsc -m es2015 --outDir es",
     "prepublish": "npm run build"
   },
   "keywords": [
