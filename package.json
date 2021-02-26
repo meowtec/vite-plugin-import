@@ -1,6 +1,6 @@
 {
   "name": "vite-plugin-import",
-  "version": "0.2.1",
+  "version": "0.3.1",
   "description": "Component modular import plugin for vite.",
   "main": "lib/index.js",
   "files": [
