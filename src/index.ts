@@ -22,7 +22,7 @@ export default (options: ImportPluginOptions) => {
     babelImportPluginOptions = options.babelImportPluginOptions;
     onlyBuild = options.onlyBuild !== false;
   }
-  
+
   /**
    * fast check and pass by code that does not contains libraryName
    */
@@ -43,7 +43,7 @@ export default (options: ImportPluginOptions) => {
       }
 
       const result = await transformAsync(src, {
-        plugins: babelImportPluginOptions.map((mod) => ['import', mod, `import-${mod.libraryDirectory}`]),
+        plugins: babelImportPluginOptions.map((mod) => ['import', mod, `import-${mod.libraryName}`]),
       });
 
       return result?.code;
